@@ -28,6 +28,14 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    restoreArguments: '--configuration $(buildConfiguration)'
+    feedsToUse: 'select'
+
+
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
@@ -38,7 +46,6 @@ steps:
     projects: '**/*webtests.csproj'
     arguments: '--configuration $(buildConfiguration)'
     testRunTitle: 'TestRun_$(build.buildnumber)'
-
 - task: DotNetCoreCLI@2
   displayName: binaries
   inputs:
