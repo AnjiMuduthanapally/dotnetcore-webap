@@ -27,11 +27,12 @@ steps:
   displayName: set dotnet version to use
 
 - task: DotNetCoreCLI@2
+  displayName: DotNetCoreCLI NuGet restore
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
-    restoreArguments: '--configuration $(buildConfiguration)'
-    feedsToUse: 'select'
+    feedsToUse: 'config'
+    nugetConfigPath: 'NuGet.config'
 
 
 - task: DotNetCoreCLI@2
